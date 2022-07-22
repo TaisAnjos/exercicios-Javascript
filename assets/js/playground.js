@@ -37,3 +37,83 @@ function validacao ( array, numArray) {
 }
 //Checando se a validação funciona na ordem: 1- Recebe o array 2- É um array? 3- É um número? 4- Parametros enviados? 5- O array tem a mesma quantidade do número?
 // console.log(validacao([123], 1)), console.log(validacao(1)), console.log(validacao([123], 's')), console.log(validacao()), console.log(validacao([123], 2))
+
+//Treinando POO
+
+//Conta bancária
+class ContaBancaria {
+	constructor(agencia, numero, tipo) {
+		this.agencia = agencia;
+		this.numero = numero;
+		this.tipo = tipo;
+		this._saldo = 0;
+	}
+
+	sacar(valor) {
+		if (valor > this._saldo) {
+			return console.log('Saque negado; saldo insuficiente!');
+		}
+
+		this._saldo = this._saldo - valor;
+		return this._saldo;
+	}
+
+	depositar(valor) {
+		this._saldo = this._saldo + valor;
+		return this._saldo;
+	}
+
+	set saldo(valor) {
+		this._saldo = valor;
+	}
+
+	get saldo() {
+		return this._saldo;
+	}
+}
+
+//Conta corrente
+class ContaCorrente extends ContaBancaria {
+	constructor(agencia, numero, cartaoCredito) {
+		super(agencia, numero);
+		this.tipo = 'corrente';
+		this._cartaoCredito = cartaoCredito;
+	}
+
+	set cartaoCredito(valor) {
+		this._cartaoCredito = valor;
+	}
+
+	get cartaoCredito() {
+		return this._cartaoCredito;
+	}
+}
+
+//Conta poupança
+class ContaPoupanca extends ContaBancaria {
+	constructor(agencia, numero) {
+		super(agencia, numero);
+		this.tipo = 'poupança';
+	}
+}
+
+//Conta Universitária
+class ContaUniversitaria extends ContaBancaria {
+	constructor(agencia, numero) {
+		super(agencia, numero);
+		this.tipo = 'universitária';
+	}
+
+	sacar(valor) {
+		if (valor > 500) {
+			return 'Operação negada.';
+		}
+
+		this._saldo = this._saldo - valor;
+		return this._saldo;
+	}
+}
+//Fim das classes
+
+// const minhaConta = new ContaCorrente(1, 211, true);
+// const contaUni = new ContaUniversitaria(2, 333);
