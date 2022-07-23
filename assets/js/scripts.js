@@ -22,7 +22,7 @@ function numerosPares (num = []) {
   (!num.length) ? console.log (-1) : () =>{
     //  checa se o numero é array
 
-      num.forEach(function(item, i) { (item % 2 == 0) ? num[i] = 0 : false});
+      num.forEach(function(item, i) { (item % 2 == 0) ? num[i] = 0 : false} );
     // mostra o array
       console.log(num)
     }
